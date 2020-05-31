@@ -170,6 +170,7 @@ class CloseAppointmentState extends State<CloseAppointment> {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -233,6 +234,7 @@ class CloseAppointmentState extends State<CloseAppointment> {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -283,6 +285,7 @@ class CloseAppointmentState extends State<CloseAppointment> {
       doktorSecildiMi = false;
     } else {
       doktorSecildiMi = true;
+      setState(() {});
     }
   }
 

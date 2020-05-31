@@ -27,7 +27,7 @@ class UpdateSectionState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "Bölüm Güncelle Ekranı",
@@ -118,6 +118,7 @@ class UpdateSectionState extends State {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -164,6 +165,7 @@ class UpdateSectionState extends State {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 

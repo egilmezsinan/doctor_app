@@ -31,7 +31,7 @@ class UpdateDoctorState extends State with ValidationMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "Doktor Güncelle Ekranı",
@@ -148,6 +148,7 @@ class UpdateDoctorState extends State with ValidationMixin {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -247,6 +248,7 @@ class UpdateDoctorState extends State with ValidationMixin {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -297,6 +299,7 @@ class UpdateDoctorState extends State with ValidationMixin {
       doktorSecildiMi = false;
     } else {
       doktorSecildiMi = true;
+      setState(() {});
     }
   }
 

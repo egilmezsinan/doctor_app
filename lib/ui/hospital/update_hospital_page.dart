@@ -22,7 +22,7 @@ class UpdateHospitalState extends State with ValidationMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           "Hastane Güncelle Ekranı",
@@ -87,6 +87,7 @@ class UpdateHospitalState extends State with ValidationMixin {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 

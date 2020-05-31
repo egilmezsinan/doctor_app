@@ -17,154 +17,170 @@ class DoctorHomePage extends StatefulWidget {
 class _DoctorHomePageState extends State<DoctorHomePage> {
   Doktor _doktor;
   _DoctorHomePageState(this._doktor);
+  String hastaneAdi, bolumAdi;
 
   Hospital hastane;
   Section bolum;
+
+  veriHazirla() {
+    SearchService().searchHospitalById(_doktor.hastaneId).then(
+      (QuerySnapshot docs) {
+        this.hastane = Hospital.fromMap(docs.documents[0].data);
+        setState(
+          () {
+            hastaneAdi = hastane.hastaneAdi.toString();
+          },
+        );
+      },
+    );
+    SearchService().searchSectionById(_doktor.bolumId).then(
+      (QuerySnapshot docs) {
+        this.bolum = Section.fromMap(docs.documents[0].data);
+        setState(
+          () {
+            bolumAdi = bolum.bolumAdi;
+          },
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    SearchService()
-        .searchHospitalById(_doktor.hastaneId)
-        .then((QuerySnapshot docs) {
-      this.hastane = Hospital.fromMap(docs.documents[0].data);
-    });
-    SearchService()
-        .searchSectionById(_doktor.bolumId)
-        .then((QuerySnapshot docs) {
-      this.bolum = Section.fromMap(docs.documents[0].data);
-    });
+    veriHazirla();
   }
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    String hastaneAdi, bolumAdi;
-    setState(() {
-      hastaneAdi = hastane.hastaneAdi.toString();
-      bolumAdi = bolum.bolumAdi;
-    });
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Doktor Ana Sayfası"),
-        ),
-        body: SingleChildScrollView(
-            child: Column(children: <Widget>[
-          Container(
-            padding:
-                EdgeInsets.only(top: 30.0, left: 5.0, right: 5.0, bottom: 25.0),
-            color: Colors.blueAccent[200],
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(18.0),
+      appBar: AppBar(
+        title: Text("Doktor Ana Sayfası"),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(
+                  top: 30.0, left: 5.0, right: 5.0, bottom: 25.0),
+              color: Colors.blueAccent[200],
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(18.0),
+                  ),
+                  color: Colors.white,
                 ),
-                color: Colors.white,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 13.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(left: 18.0),
+                          child: Icon(
+                            Icons.healing,
+                            size: 50.0,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 3.0,
+                        ),
+                        Container(
+                          child: Text(
+                            _doktor.adi,
+                            style: TextStyle(
+                                fontSize: 30.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 15.0,
+                        ),
+                        Container(
+                          child: Text(
+                            _doktor.soyadi,
+                            style: TextStyle(
+                                fontSize: 30.0, fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                      color: Colors.grey,
+                      width: 370.0,
+                      height: 0.4,
+                    ),
+                    _buildAttributeRow(
+                        "T.C. Kimlik Numarası", _doktor.kimlikNo),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.0, left: 13.0),
+                          child: Container(
+                            alignment: Alignment.center,
+                            color: Colors.greenAccent,
+                            width: 120.0,
+                            height: 25.0,
+                            child: Text(
+                              "Hastane",
+                              style: TextStyle(
+                                  fontSize: 15.0, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.0, left: 13.0),
+                          child: Container(
+                            child: Text(
+                              (hastaneAdi != null ? hastaneAdi : " "),
+                              style: TextStyle(
+                                  fontSize: 15.0, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    _buildAttributeRow("Bölüm ", bolumAdi.toString() ?? " "),
+                    SizedBox(
+                      height: 30.0,
+                    )
+                  ],
+                ),
               ),
+            ),
+            Container(
+              width: screenSize.width,
+              height: screenSize.height / 2,
+              color: Colors.blueAccent[200],
               child: Column(
                 children: <Widget>[
                   SizedBox(
-                    height: 13.0,
+                    height: 5.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(left: 18.0),
-                        child: Icon(
-                          Icons.healing,
-                          size: 50.0,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 3.0,
-                      ),
-                      Container(
-                        child: Text(
-                          _doktor.adi,
-                          style: TextStyle(
-                              fontSize: 30.0, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 15.0,
-                      ),
-                      Container(
-                        child: Text(
-                          _doktor.soyadi,
-                          style: TextStyle(
-                              fontSize: 30.0, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
-                  Container(
-                    color: Colors.grey,
-                    width: 370.0,
-                    height: 0.4,
-                  ),
-                  _buildAttributeRow("T.C. Kimlik Numarası", _doktor.kimlikNo),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0, left: 13.0),
-                        child: Container(
-                          alignment: Alignment.center,
-                          color: Colors.greenAccent,
-                          width: 120.0,
-                          height: 25.0,
-                          child: Text(
-                            "Hastane",
-                            style: TextStyle(
-                                fontSize: 15.0, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0, left: 13.0),
-                        child: Container(
-                          child: Text(
-                            hastaneAdi,
-                            style: TextStyle(
-                                fontSize: 15.0, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  _buildAttributeRow("Bölüm ", bolumAdi.toString()),
+                  _sifreGuncelleButonu(),
                   SizedBox(
-                    height: 30.0,
-                  )
+                    height: 7.0,
+                  ),
+                  _randevulariGotuntuleButonu(),
+                  SizedBox(
+                    height: 7.0,
+                  ),
+                  _cikisYapButonu(),
                 ],
               ),
-            ),
-          ),
-          Container(
-            width: screenSize.width,
-            height: screenSize.height / 2,
-            color: Colors.blueAccent[200],
-            child: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 5.0,
-                ),
-                _sifreGuncelleButonu(),
-                SizedBox(
-                  height: 7.0,
-                ),
-                _randevulariGotuntuleButonu(),
-                SizedBox(
-                  height: 7.0,
-                ),
-                _cikisYapButonu(),
-              ],
-            ),
-          )
-        ])));
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildAttributeRow(var textMessage, var textValue) {

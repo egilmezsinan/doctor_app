@@ -124,6 +124,7 @@ class DeleteSectionState extends State {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -135,6 +136,7 @@ class DeleteSectionState extends State {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 

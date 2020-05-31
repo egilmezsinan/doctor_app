@@ -86,6 +86,7 @@ class DeleteHospitalState extends State {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 

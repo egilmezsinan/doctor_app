@@ -128,6 +128,7 @@ class DeleteDoctorState extends State {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -139,6 +140,7 @@ class DeleteDoctorState extends State {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -224,6 +226,7 @@ class DeleteDoctorState extends State {
       doktorSecildiMi = false;
     } else {
       doktorSecildiMi = true;
+      setState(() {});
     }
   }
 

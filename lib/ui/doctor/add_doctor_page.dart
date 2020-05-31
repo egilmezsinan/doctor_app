@@ -258,6 +258,7 @@ class AddDoctorState extends State with ValidationMixin {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -269,6 +270,7 @@ class AddDoctorState extends State with ValidationMixin {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 

@@ -171,6 +171,7 @@ class OpenAppointmentState extends State<OpenAppointment> {
       hastaneSecildiMi = false;
     } else {
       hastaneSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -196,14 +197,15 @@ class OpenAppointmentState extends State<OpenAppointment> {
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
           Opacity(
-              opacity: goruntu,
-              child: Container(
-                alignment: Alignment.center,
-                child: Text(
-                  textMessage,
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                ),
-              ))
+            opacity: goruntu,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                textMessage,
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -234,6 +236,7 @@ class OpenAppointmentState extends State<OpenAppointment> {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -284,6 +287,7 @@ class OpenAppointmentState extends State<OpenAppointment> {
       doktorSecildiMi = false;
     } else {
       doktorSecildiMi = true;
+      setState(() {});
     }
   }
 
