@@ -1,4 +1,15 @@
 import 'package:doctor_appointment_app/models/admin_model.dart';
+import 'package:doctor_appointment_app/ui/close_appointment_page.dart';
+import 'package:doctor_appointment_app/ui/doctor/add_doctor_page.dart';
+import 'package:doctor_appointment_app/ui/doctor/del_doctor_page.dart';
+import 'package:doctor_appointment_app/ui/doctor/upp_doctor_page.dart';
+import 'package:doctor_appointment_app/ui/hospital/add_hospital_page.dart';
+import 'package:doctor_appointment_app/ui/hospital/del_hospital_page.dart';
+import 'package:doctor_appointment_app/ui/hospital/update_hospital_page.dart';
+import 'package:doctor_appointment_app/ui/open_appointment_page.dart';
+import 'package:doctor_appointment_app/ui/section/add_section_page.dart';
+import 'package:doctor_appointment_app/ui/section/del_section_page.dart';
+import 'package:doctor_appointment_app/ui/section/update_section_page.dart';
 import 'package:flutter/material.dart';
 
 class AdminHomePage extends StatefulWidget {
@@ -16,51 +27,52 @@ class _AdminHomePageState extends State<AdminHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.lightBlueAccent,
-        appBar: AppBar(
-          leading: Icon(Icons.timeline),
-          backgroundColor: Colors.deepOrangeAccent,
-          title: Text(
-            "Admin Ana Sayfası",
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
+      backgroundColor: Colors.lightBlueAccent,
+      appBar: AppBar(
+        leading: Icon(Icons.timeline),
+        backgroundColor: Colors.deepOrangeAccent,
+        title: Text(
+          "Admin Ana Sayfası",
+          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              _bodyTitle(),
-              _buildTitle("Hastane İşlemleri"),
-              SizedBox(
-                height: 9.0,
-              ),
-              _hastaneIslemButonlari(),
-              SizedBox(
-                height: 9.0,
-              ),
-              _buildTitle("Bölüm İşlemleri"),
-              SizedBox(
-                height: 9.0,
-              ),
-              _bolumIslemButonlari(),
-              SizedBox(
-                height: 9.0,
-              ),
-              _buildTitle("Doktor İşlemleri"),
-              SizedBox(
-                height: 9.0,
-              ),
-              _doktorIslemButonlari(),
-              SizedBox(
-                height: 9.0,
-              ),
-              _buildTitle("Diğer İşlemler"),
-              SizedBox(
-                height: 9.0,
-              ),
-              _digerIslemButonlari()
-            ],
-          ),
-        ));
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            _bodyTitle(),
+            _buildTitle("Hastane İşlemleri"),
+            SizedBox(
+              height: 9.0,
+            ),
+            _hastaneIslemButonlari(),
+            SizedBox(
+              height: 9.0,
+            ),
+            _buildTitle("Bölüm İşlemleri"),
+            SizedBox(
+              height: 9.0,
+            ),
+            _bolumIslemButonlari(),
+            SizedBox(
+              height: 9.0,
+            ),
+            _buildTitle("Doktor İşlemleri"),
+            SizedBox(
+              height: 9.0,
+            ),
+            _doktorIslemButonlari(),
+            SizedBox(
+              height: 9.0,
+            ),
+            _buildTitle("Diğer İşlemler"),
+            SizedBox(
+              height: 9.0,
+            ),
+            _digerIslemButonlari()
+          ],
+        ),
+      ),
+    );
   }
 
   _bodyTitle() {
@@ -230,50 +242,39 @@ class _AdminHomePageState extends State<AdminHomePage> {
           switch (buttonIndex) {
             case 0:
               basicNavigator(UpdateHospital());
-
               break;
             case 1:
               basicNavigator(AddHospital());
-
               break;
             case 2:
               basicNavigator(DeleteHospital());
-
               break;
             case 3:
               basicNavigator(UpdateSection());
               break;
             case 4:
               basicNavigator(AddSection());
-
               break;
             case 5:
               basicNavigator(DeleteSection());
-
               break;
             case 6:
               basicNavigator(UpdateDoctor());
-
               break;
             case 7:
               basicNavigator(AddDoctor());
-
               break;
             case 8:
               basicNavigator(DeleteDoctor());
-
               break;
             case 9:
               basicNavigator(CloseAppointment(_admin));
-
               break;
             case 10:
               basicNavigator(OpenAppointment(_admin));
-
               break;
             case 11:
               Navigator.pop(context); //Logout
-
               break;
             default:
           }
@@ -285,7 +286,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
   void basicNavigator(dynamic page) async {
     bool result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => page));
-
     if (result != null && result == true) {
       alrtDone(context, "İşlem Tamamlandı");
     }
@@ -301,9 +301,10 @@ class _AdminHomePageState extends State<AdminHomePage> {
     );
 
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertDoctor;
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return alertDoctor;
+      },
+    );
   }
 }

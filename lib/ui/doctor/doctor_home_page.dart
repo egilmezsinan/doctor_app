@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:doctor_appointment_app/dbHelper/search_data.dart';
 import 'package:doctor_appointment_app/models/doktor_model.dart';
+import 'package:doctor_appointment_app/models/hospital_model.dart';
+import 'package:doctor_appointment_app/models/section_model.dart';
+import 'package:doctor_appointment_app/ui/doctor/show_appo_for_doc.dart';
+import 'package:doctor_appointment_app/ui/doctor/uppdate_doctor_pass.dart';
 import 'package:flutter/material.dart';
 
 class DoctorHomePage extends StatefulWidget {
@@ -233,10 +237,11 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
         ),
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      BuildAppointmentListForDoctor(_doktor)));
+            context,
+            MaterialPageRoute(
+              builder: (context) => BuildAppointmentListForDoctor(_doktor),
+            ),
+          );
         },
       ),
     );
@@ -261,10 +266,11 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
     );
 
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertDoctor;
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return alertDoctor;
+      },
+    );
   }
 
   _cikisYapButonu() {
