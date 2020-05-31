@@ -41,7 +41,7 @@ class WelcomePageState extends State
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Fast Anadolu Randevu Sistemi",
+          "Doc10 Randevu Sistemi",
           textDirection: TextDirection.ltr,
         ),
         bottom: TabBar(

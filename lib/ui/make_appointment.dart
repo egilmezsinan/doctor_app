@@ -136,16 +136,19 @@ class MakeAppointmentState extends State<MakeAppointment> {
                               ),
                             );
                             tarihSecildiMi = true;
+                            setState(() {});
                           } else {
-                            alrtHospital(context,
-                                "Yukarıdaki seçimler tamamlanmadan saat seçimine geçilemez");
+                            alrtHospital(
+                              context,
+                              "Yukarıdaki seçimler tamamlanmadan saat seçimine geçilemez",
+                            );
                           }
                         },
                       ),
                       SizedBox(
                         height: 16.0,
                       ),
-                      showSelectedDate(tarihSecildiMi),
+                      //showSelectedDate(tarihSecildiMi),
                       SizedBox(
                         height: 16.0,
                       ),
@@ -174,34 +177,40 @@ class MakeAppointmentState extends State<MakeAppointment> {
   showSelectedHospital(bool secildiMi) {
     String textMessage = " ";
     if (secildiMi) {
-      setState(() {
-        textMessage = this.hastane.hastaneAdi.toString();
-      });
+      setState(
+        () {
+          textMessage = this.hastane.hastaneAdi.toString();
+        },
+      );
       goruntu = 1.0;
     } else {
       goruntu = 0.0;
     }
 
     return Container(
-        decoration: BoxDecoration(),
-        child: Row(
-          children: <Widget>[
-            Text(
-              "Seçilen Hastane : ",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      padding: EdgeInsets.only(top:5),
+      decoration: BoxDecoration(),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Seçilen Hastane : ",
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          ),
+          Expanded(
+            child: Opacity(
+              opacity: goruntu,
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  textMessage,
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
-            Opacity(
-                opacity: goruntu,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    textMessage,
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                ))
-          ],
-        ));
+          )
+        ],
+      ),
+    );
   }
 
   void alrtHospital(BuildContext context, String message) {
@@ -214,10 +223,11 @@ class MakeAppointmentState extends State<MakeAppointment> {
     );
 
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertDoctor;
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return alertDoctor;
+      },
+    );
   }
 
   void sectionNavigator(dynamic page) async {
@@ -228,6 +238,7 @@ class MakeAppointmentState extends State<MakeAppointment> {
       bolumSecildiMi = false;
     } else {
       bolumSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -235,29 +246,33 @@ class MakeAppointmentState extends State<MakeAppointment> {
     double goruntu = 0.0;
 
     if (secildiMi) {
-      setState(() {
-        textMessage = this.section.bolumAdi.toString();
-      });
+      setState(
+        () {
+          textMessage = this.section.bolumAdi.toString();
+        },
+      );
       goruntu = 1.0;
     } else {
       goruntu = 0.0;
     }
 
     return Container(
-        decoration: BoxDecoration(),
-        child: Row(
-          children: <Widget>[
-            Text(
-              "Seçilen Bölüm : ",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-            ),
-            Opacity(
-                opacity: goruntu,
-                child: Container(
-                    alignment: Alignment.center,
-                    child: _buildTextMessage(textMessage)))
-          ],
-        ));
+      padding: EdgeInsets.only(top:5),
+      decoration: BoxDecoration(),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Seçilen Bölüm : ",
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          ),
+          Opacity(
+              opacity: goruntu,
+              child: Container(
+                  alignment: Alignment.center,
+                  child: _buildTextMessage(textMessage)))
+        ],
+      ),
+    );
   }
 
   _buildTextMessage(String gelenText) {
@@ -275,6 +290,7 @@ class MakeAppointmentState extends State<MakeAppointment> {
       doktorSecildiMi = false;
     } else {
       doktorSecildiMi = true;
+      setState(() {});
     }
   }
 
@@ -290,6 +306,7 @@ class MakeAppointmentState extends State<MakeAppointment> {
     }
 
     return Container(
+      padding: EdgeInsets.only(top:5),
         decoration: BoxDecoration(),
         child: Row(
           children: <Widget>[
@@ -354,34 +371,40 @@ class MakeAppointmentState extends State<MakeAppointment> {
   showSelectedDate(bool tarihSecildiMi) {
     String textMessage = " ";
     if (tarihSecildiMi) {
-      setState(() {
-        textMessage = saatTarihBirlesim.toString();
-      });
+      setState(
+        () {
+          textMessage = saatTarihBirlesim.toString();
+        },
+      );
       goruntuSaat = 1.0;
     } else {
       goruntuSaat = 0.0;
     }
 
     return Container(
-        decoration: BoxDecoration(),
-        child: Row(
-          children: <Widget>[
-            Text(
-              "Randevu Tarih ve Saati : ",
-              style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+      padding: EdgeInsets.only(top:5),
+      decoration: BoxDecoration(),
+      child: Row(
+        children: <Widget>[
+          Text(
+            "Randevu Tarih ve Saati : ",
+            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          ),
+          Expanded(
+            child: Opacity(
+              opacity: goruntuSaat,
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  textMessage,
+                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
-            Opacity(
-                opacity: goruntuSaat,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    textMessage,
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                ))
-          ],
-        ));
+          )
+        ],
+      ),
+    );
   }
 
   void basicNavigator(dynamic page) async {
@@ -391,47 +414,48 @@ class MakeAppointmentState extends State<MakeAppointment> {
 
   void alrtAppointment(BuildContext context) {
     var alertAppointment = AlertDialog(
-        contentPadding: const EdgeInsets.fromLTRB(5.0, 50.0, 5.0, 50.0),
-        title: Text(
-          "İşlem Özeti",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        content: Container(
-          padding: EdgeInsets.only(bottom: 50.0),
-          child: Column(
-            children: <Widget>[
-              showSelectedHospital(hastaneSecildiMi),
-              _showSelectedSection(bolumSecildiMi),
-              showSelectedDoctor(doktorSecildiMi),
-              showSelectedDate(tarihSecildiMi),
-              SizedBox(
-                height: 13.0,
-              ),
-              Container(
-                child: FlatButton(
-                  child: Text(
-                    "Tamam",
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context, true);
-                    AddService().addDoctorAppointment(doktor);
-                    AddService().addActiveAppointment(
-                        doktor, kullanici, saatTarihBirlesim);
-                  },
+      contentPadding: const EdgeInsets.fromLTRB(5.0, 50.0, 5.0, 50.0),
+      title: Text(
+        "İşlem Özeti",
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      content: Container(
+        padding: EdgeInsets.only(bottom: 50.0),
+        child: Column(
+          children: <Widget>[
+            showSelectedHospital(hastaneSecildiMi),
+            _showSelectedSection(bolumSecildiMi),
+            showSelectedDoctor(doktorSecildiMi),
+            showSelectedDate(tarihSecildiMi),
+            SizedBox(
+              height: 13.0,
+            ),
+            Container(
+              child: FlatButton(
+                child: Text(
+                  "Tamam",
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context, true);
+                  AddService().addDoctorAppointment(doktor);
+                  AddService().addActiveAppointment(
+                      doktor, kullanici, saatTarihBirlesim);
+                },
               ),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
 
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertAppointment;
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return alertAppointment;
+      },
+    );
   }
 
   //fav kısmı
@@ -443,14 +467,26 @@ class MakeAppointmentState extends State<MakeAppointment> {
           "Hastanenin Popüler Doktorları",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        content: Scaffold(body: _buildStremBuilderForFav(context, hastane)),
+        content: Scaffold(
+          body: _buildStremBuilderForFav(context, hastane),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() {});
+            },
+            child: Text("Tamam"),
+          ),
+        ],
       );
 
       showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return alertAppointment;
-          });
+        context: context,
+        builder: (BuildContext context) {
+          return alertAppointment;
+        },
+      );
     }
   }
 
