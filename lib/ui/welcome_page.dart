@@ -6,8 +6,8 @@ import 'package:doctor_appointment_app/models/doktor_model.dart';
 import 'package:doctor_appointment_app/models/user_model.dart';
 import 'package:doctor_appointment_app/ui/admin/admin_home_page.dart';
 import 'package:doctor_appointment_app/ui/doctor/doctor_home_page.dart';
-import 'package:doctor_appointment_app/ui/doctor/user_home_page.dart';
 import 'package:doctor_appointment_app/ui/user/register_page.dart';
+import 'package:doctor_appointment_app/ui/user/user_home_page.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatefulWidget {
